@@ -4,9 +4,18 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "oxlint": "^1.81.0"
   },
+  
   "peerDependencies": {
-    "typescript": "^7"
+    "typescript": "^7.0.2"
+  },
+
+  "scripts":{
+    "lint": "oxlint --deny-warnings",
+    "format": "oxfmt --check",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test"
   }
 }
