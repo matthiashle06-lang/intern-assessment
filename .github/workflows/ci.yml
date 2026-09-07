@@ -2,32 +2,32 @@ name: CI
 
 on:
   push:
-    branches: [ "develop", "feature/*" ]
+    branches: ["develop", "feature/*"]
   pull_request:
-    branches: [ "develop" ]
+    branches: ["develop"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-          
+
       - name: Install dependencies
         run: bun install
-        
+
       - name: Check formatting
         run: bun run format
-        
+
       - name: Run linter
         run: bun run lint
-        
+
       - name: Check types
         run: bun run typecheck
-        
+
       - name: Run tests
         run: bun run test
