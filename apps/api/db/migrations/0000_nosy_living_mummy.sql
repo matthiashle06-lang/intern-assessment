@@ -1,3 +1,6 @@
+-- sql file for database configuration
+
+-- creates enquiries table with specified columns and constraints
 CREATE TABLE "enquiries" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
@@ -7,6 +10,7 @@ CREATE TABLE "enquiries" (
 	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
+-- creates properties table with specified columns and constraints
 CREATE TABLE "properties" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"title" text NOT NULL,
