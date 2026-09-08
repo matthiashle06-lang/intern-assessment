@@ -174,7 +174,7 @@ const app = new Elysia()
               })
               .returning();
             return newEnquiry[0];
-          } catch (error) {
+          } catch {
             set.status = 500;
             return { error: "Failed to submit enquiry" };
           }
