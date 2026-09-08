@@ -22,4 +22,5 @@ CREATE TABLE "properties" (
 	"owner_id" uuid NOT NULL
 );
 --> statement-breakpoint
+-- adds foreign key constraint to enquiries table referencing properties table
 ALTER TABLE "enquiries" ADD CONSTRAINT "enquiries_property_id_properties_id_fk" FOREIGN KEY ("property_id") REFERENCES "public"."properties"("id") ON DELETE cascade ON UPDATE no action;
