@@ -23,8 +23,8 @@ export const enquiries = pgTable("enquiries", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-export const users = pgTable("user", {
-  id: text("id").primaryKey(),
+export const user = pgTable("user", {
+  id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").notNull(),
@@ -33,16 +33,38 @@ export const users = pgTable("user", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const accounts = pgTable("account", {
-  id: text("id").primaryKey(),
+export const account = pgTable("account", {
+  id: uuid("id").primaryKey().defaultRandom(),
   accountId: text("account_id").notNull(),
   providerId: text("provider_id").notNull(),
-  userId: text("user_id")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
+  userId: uuid("user_id").notNull().references(() => user.id),
   accessToken: text("access_token"),
   refreshToken: text("refresh_token"),
   idToken: text("id_token"),
-  expiresAt: integer("expires_at"),
+  accessTokenExpiresAt: timestamp("access_token_expires_at"), // Added
+  refreshTokenExpiresAt: timestamp("refresh_token_expires_at"), // Added
+  scope: text("scope"), // Added
   password: text("password"),
+  createdAt: timestamp("created_at").notNull(), // Added
+  updatedAt: timestamp("updated_at").notNull()  // Added
+});
+
+export const session = pgTable("session", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").notNull().references(() => user.id),
+  token: text("token").notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at").notNull(),
+  updatedAt: timestamp("updated_at").notNull()
+});
+
+export const verification = pgTable("verification", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  identifier: text("identifier").notNull(),
+  value: text("value").notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at"),
+  updatedAt: timestamp("updated_at")
 });

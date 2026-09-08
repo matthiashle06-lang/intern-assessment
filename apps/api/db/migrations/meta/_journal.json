@@ -15,6 +15,13 @@
       "when": 1788844487688,
       "tag": "0001_loud_ikaris",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1788850709813,
+      "tag": "0002_brief_omega_sentinel",
+      "breakpoints": true
     }
   ]
 }
