@@ -5,7 +5,7 @@ import { auth } from "./auth";
 import { eq, and } from "drizzle-orm";
 import type { Context } from "elysia";
 
-const app = new Elysia()
+export const app = new Elysia()
   // --- AUTH & MIDDLEWARE ---
   .mount(auth.handler)
   .derive(async ({ request }) => {
