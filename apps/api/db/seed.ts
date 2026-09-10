@@ -1,6 +1,6 @@
 import { db } from "./client";
 import { properties } from "./schema";
-import { auth } from "../auth"; 
+import { auth } from "../auth";
 
 async function main() {
   console.log("Seeding database...");
@@ -41,7 +41,7 @@ async function main() {
       price: 9999,
       published: false,
       ownerId: amirData.user.id,
-    }
+    },
   ]);
 
   await db.insert(properties).values([
@@ -51,7 +51,7 @@ async function main() {
       price: 800,
       published: true,
       ownerId: beaData.user.id,
-    }
+    },
   ]);
 
   console.log("Properties seeded successfully!");

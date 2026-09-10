@@ -37,7 +37,7 @@ export default function LoginPage() {
       });
 
       if (!res.ok) throw new Error("Invalid credentials");
-      
+
       // Redirect to the protected dashboard on success
       router.push("/dashboard");
     } catch (err) {
@@ -48,19 +48,36 @@ export default function LoginPage() {
 
   return (
     <main className="p-8 max-w-md mx-auto">
-        <div className="mb-6 text-right">
-            <a href="/login" className="text-blue-600 hover:underline">Owner Sign In</a>
-        </div>
-      <form onSubmit={handleSubmit} className="mt-8 p-6 border rounded shadow-sm flex flex-col gap-4">
+      <div className="mb-6 text-right">
+        <a href="/login" className="text-blue-600 hover:underline">
+          Owner Sign In
+        </a>
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="mt-8 p-6 border rounded shadow-sm flex flex-col gap-4"
+      >
         <h1 className="text-2xl font-bold mb-2">Sign In</h1>
-        
-        <input name="email" type="email" placeholder="Email" className="border p-2 rounded" required />
-        <input name="password" type="password" placeholder="Password" className="border p-2 rounded" required />
-        
+
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          className="border p-2 rounded"
+          required
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          className="border p-2 rounded"
+          required
+        />
+
         {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
-        
-        <button 
-          type="submit" 
+
+        <button
+          type="submit"
           disabled={isLoading}
           className="bg-blue-600 text-white p-2 rounded disabled:opacity-50"
         >

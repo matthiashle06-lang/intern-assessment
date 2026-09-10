@@ -12,7 +12,7 @@ export const app = new Elysia()
       origin: "http://localhost:3000",
       credentials: true, // This is mandatory for Better Auth cookies to work!
       allowedHeaders: ["Content-Type", "Authorization", "Accept"],
-    })
+    }),
   )
   // --- AUTH & MIDDLEWARE ---
   .mount(auth.handler)
@@ -36,16 +36,10 @@ export const app = new Elysia()
           return { error: "Unauthorized" };
         }
 
-        return await db
-          .select()
-          .from(properties)
-          .where(eq(properties.ownerId, user.id));
+        return await db.select().from(properties).where(eq(properties.ownerId, user.id));
       }
 
-      return await db
-        .select()
-        .from(properties)
-        .where(eq(properties.published, true));
+      return await db.select().from(properties).where(eq(properties.published, true));
     },
     {
       query: t.Object({
@@ -53,7 +47,7 @@ export const app = new Elysia()
       }),
     },
   )
-  
+
   .get("/properties/:id", async ({ params: { id }, user, set }) => {
     const result = await db.select().from(properties).where(eq(properties.id, id));
     const property = result[0];

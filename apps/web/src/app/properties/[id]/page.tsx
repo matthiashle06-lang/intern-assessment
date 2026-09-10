@@ -3,7 +3,6 @@ import EnquiryForm from "./enquiryForm";
 
 // 1. Update the type to expect a Promise
 export default async function PropertyDetail({ params }: { params: Promise<{ id: string }> }) {
-  
   // 2. Await the params to unwrap the ID
   const resolvedParams = await params;
   const propertyId = resolvedParams.id;
@@ -34,12 +33,14 @@ export default async function PropertyDetail({ params }: { params: Promise<{ id:
   return (
     <main className="p-8 max-w-2xl mx-auto">
       <div className="mb-4">
-        <a href="/" className="text-blue-600 hover:underline">← Back to all properties</a>
+        <a href="/" className="text-blue-600 hover:underline">
+          ← Back to all properties
+        </a>
       </div>
-      
+
       <h1 className="text-3xl font-bold">{property.name}</h1>
       <p className="text-gray-500 text-lg mb-6">${property.price} / month</p>
-      
+
       <div className="prose mb-8">
         <p>{property.description}</p>
       </div>

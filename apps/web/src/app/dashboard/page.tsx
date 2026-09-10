@@ -17,13 +17,13 @@ export default function DashboardPage() {
         // Fetch both resources concurrently with cookies included
         const [enqRes, propRes] = await Promise.all([
           fetch("http://localhost:3001/enquiries", { credentials: "include" }),
-          fetch("http://localhost:3001/properties?filter=mine", { credentials: "include" })
+          fetch("http://localhost:3001/properties?filter=mine", { credentials: "include" }),
         ]);
         if (!enqRes.ok || !propRes.ok) throw new Error("Failed to load dashboard data");
 
         const rawEnquiries = await enqRes.json();
         const rawProperties = await propRes.json();
-        
+
         // Enforce the contracts
         const parsedEnq = enquiryListSchema.safeParse(rawEnquiries);
         const parsedProp = propertyListSchema.safeParse(rawProperties);
@@ -56,8 +56,10 @@ export default function DashboardPage() {
     }
   };
 
-  if (status === "loading") return <main className="p-8 max-w-2xl mx-auto text-gray-500">Loading dashboard...</main>;
-  if (status === "error") return <main className="p-8 max-w-2xl mx-auto text-red-500">Error: {errorMsg}</main>;
+  if (status === "loading")
+    return <main className="p-8 max-w-2xl mx-auto text-gray-500">Loading dashboard...</main>;
+  if (status === "error")
+    return <main className="p-8 max-w-2xl mx-auto text-red-500">Error: {errorMsg}</main>;
 
   return (
     <main className="p-8 max-w-4xl mx-auto">
@@ -80,7 +82,9 @@ export default function DashboardPage() {
                 <div key={prop.id} className="border p-4 rounded shadow-sm bg-white text-black">
                   <div className="flex justify-between">
                     <span className="font-semibold">{prop.name}</span>
-                    <span className={`text-xs px-2 py-1 rounded ${prop.published ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                    <span
+                      className={`text-xs px-2 py-1 rounded ${prop.published ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}`}
+                    >
                       {prop.published ? "Published" : "Draft"}
                     </span>
                   </div>

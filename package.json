@@ -1,11 +1,11 @@
 {
   "name": "intern-assessment",
   "private": true,
-  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
+  "type": "module",
   "module": "index.ts",
   "scripts": {
     "lint": "oxlint --deny-warnings",

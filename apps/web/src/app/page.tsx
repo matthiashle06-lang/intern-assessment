@@ -2,9 +2,9 @@ import { propertyListSchema } from "schemas";
 
 export default async function Home() {
   const res = await fetch("http://localhost:3001/properties", {
-    cache: "no-store" // Ensures fresh data on every load
+    cache: "no-store", // Ensures fresh data on every load
   });
-  
+
   if (!res.ok) {
     return <main className="p-8 text-red-500">Error: Failed to load properties.</main>;
   }
@@ -20,7 +20,6 @@ export default async function Home() {
 
   return (
     <main className="p-8 max-w-2xl mx-auto">
-      
       {/* The Login Link */}
       <div className="mb-6 flex justify-end">
         <a href="/login" className="text-blue-600 hover:underline font-semibold">
