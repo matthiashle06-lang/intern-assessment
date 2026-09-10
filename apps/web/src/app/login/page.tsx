@@ -11,7 +11,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMsg("");
@@ -63,6 +63,8 @@ export default function LoginPage() {
           placeholder="Email"
           className="border p-2 rounded"
           required
+          value={email}
+          onChange={(e) => setEmail((e.currentTarget as unknown as { value: string }).value)}
         />
         <input
           name="password"
@@ -70,6 +72,8 @@ export default function LoginPage() {
           placeholder="Password"
           className="border p-2 rounded"
           required
+          value={password}
+          onChange={(e) => setPassword((e.currentTarget as unknown as { value: string }).value)}
         />
 
         {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
