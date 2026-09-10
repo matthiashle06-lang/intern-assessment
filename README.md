@@ -24,7 +24,7 @@ Follow these exact steps to get a fresh instance of the application running loca
 **1. Clone the repository**
 
 ````bash
-git clone <https://github.com/matthiashle06-lang/intern-assessment>
+git clone https://github.com/matthiashle06-lang/intern-assessment
 cd <intern-assessment>
 
 **2. Install dependencies**
@@ -40,7 +40,7 @@ bun add --dev concurrently
 **3. Environment Variables**
 Copy the example environment file and ensure the default values are set:
 
-cp .env.example .env
+copy .env.example .env
 
 **4. Start the Database & Apply Schema**
 Make sure docker is running on your machine, then execute:
