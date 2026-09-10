@@ -3,23 +3,27 @@
 A full-stack property management dashboard with strictly enforced ownership boundaries. Built with a decoupled architecture featuring a Next.js frontend and an Elysia API.
 
 ## Tech Stack
-* **Frontend:** Next.js, React, Tailwind CSS
-* **Backend:** Elysia.js (Bun)
-* **Database & ORM:** PostgreSQL (via Docker), Drizzle ORM
-* **Authentication:** Better Auth
+
+- **Frontend:** Next.js, React, Tailwind CSS
+- **Backend:** Elysia.js (Bun)
+- **Database & ORM:** PostgreSQL (via Docker), Drizzle ORM
+- **Authentication:** Better Auth
 
 ## Prerequisites
+
 Ensure you have the following installed before proceeding:
-* [Bun](https://bun.sh/) (v1.0+)
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Running)
-* Git
+
+- [Bun](https://bun.sh/) (v1.0+)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Running)
+- Git
 
 ## Quick Start (10-Minute Setup)
 
 Follow these exact steps to get a fresh instance of the application running locally.
 
 **1. Clone the repository**
-```bash
+
+````bash
 git clone <https://github.com/matthiashle06-lang/intern-assessment>
 cd <intern-assessment>
 
@@ -31,7 +35,7 @@ The root `dev` script uses `concurrently` to run the frontend and API together. 
 
 ```bash
 bun add --dev concurrently
-```
+````
 
 **3. Environment Variables**
 Copy the example environment file and ensure the default values are set:
