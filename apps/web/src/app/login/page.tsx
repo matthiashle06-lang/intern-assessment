@@ -40,7 +40,7 @@ export default function LoginPage() {
 
       // Redirect to the protected dashboard on success
       router.push("/dashboard");
-    } catch (err) {
+    } catch {
       setErrorMsg("Failed to sign in. Please check your credentials.");
       setIsLoading(false);
     }

@@ -51,7 +51,7 @@ export default function DashboardPage() {
         credentials: "include",
       });
       router.push("/");
-    } catch (err) {
+    } catch {
       console.error("Failed to sign out");
     }
   };
