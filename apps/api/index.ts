@@ -4,8 +4,16 @@ import { enquiries, properties } from "./db/schema";
 import { auth } from "./auth";
 import { eq, and } from "drizzle-orm";
 import type { Context } from "elysia";
+import { cors } from "@elysiajs/cors";
 
 export const app = new Elysia()
+  .use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true, // This is mandatory for Better Auth cookies to work!
+      allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+    })
+  )
   // --- AUTH & MIDDLEWARE ---
   .mount(auth.handler)
   .derive(async ({ request }) => {
@@ -17,10 +25,35 @@ export const app = new Elysia()
   })
 
   // --- PUBLIC ROUTES ---
-  .get("/properties", async () => {
-    return await db.select().from(properties).where(eq(properties.published, true));
-  })
+  .get(
+    "/properties",
+    async ({ request, user, set }) => {
+      const filter = new URL(request.url).searchParams.get("filter");
 
+      if (filter === "mine") {
+        if (!user) {
+          set.status = 401;
+          return { error: "Unauthorized" };
+        }
+
+        return await db
+          .select()
+          .from(properties)
+          .where(eq(properties.ownerId, user.id));
+      }
+
+      return await db
+        .select()
+        .from(properties)
+        .where(eq(properties.published, true));
+    },
+    {
+      query: t.Object({
+        filter: t.Optional(t.Literal("mine")),
+      }),
+    },
+  )
+  
   .get("/properties/:id", async ({ params: { id }, user, set }) => {
     const result = await db.select().from(properties).where(eq(properties.id, id));
     const property = result[0];
@@ -33,6 +66,7 @@ export const app = new Elysia()
   })
 
   // --- PROTECTED ROUTES ---
+
   .post(
     "/properties",
     async ({ body, user, set }) => {
@@ -189,6 +223,6 @@ export const app = new Elysia()
       );
   })
 
-  .listen(3000);
+  .listen(3001);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);

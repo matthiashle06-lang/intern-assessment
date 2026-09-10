@@ -2,14 +2,26 @@
   "name": "intern-assessment",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "module": "index.ts",
   "scripts": {
     "lint": "oxlint --deny-warnings",
     "format": "oxfmt --check",
     "typecheck": "tsc --noEmit",
-    "test": "bun test"
+    "test": "bun test",
+    "dev:api": "bun run index.ts",
+    "dev:web": "cd apps/web && bun run dev",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "bun run apps/api/db/seed.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.4.2",
     "better-auth": "^1.7.3",
     "drizzle-orm": "^0.45.2",
     "elysia": "^1.4.30",

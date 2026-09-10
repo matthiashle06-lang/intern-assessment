@@ -1,0 +1,7 @@
+{
+  "name": "schemas",
+  "main": "index.ts",
+  "dependencies": {
+    "zod": "^3.0.0"
+  }
+}
