@@ -23,45 +23,52 @@ Follow these exact steps to get a fresh instance of the application running loca
 
 **1. Clone the repository**
 
-````bash
+```bash
 git clone https://github.com/matthiashle06-lang/intern-assessment
 cd intern-assessment
-````
+```
 
 **2. Install dependencies**
 
-````bash
+```bash
 bun install
-````
+```
 
 The root `dev` script uses `concurrently` to run the frontend and API together. If it is not already installed, add it to the root workspace with:
 
-````bash
+```bash
 bun add --dev concurrently
-````
+```
 
 **3. Environment Variables**
 Copy the example environment file and ensure the default values are set:
 
-````bash
+```bash
 copy .env.example .env
-````
+```
+
 **4. Start the Database & Apply Schema**
 Make sure docker is running on your machine, then execute:
-````bash
+
+```bash
 docker compose up -d
 bun run db:push
-````
+```
+
 **5. Seed the database**
 This will populate the database with properties and create test users
-````bash
+
+```bash
 bun run db:seed
-````
+```
+
 **6. Start the Application**
 Boot the frontend and the API concurrently
-````bash
+
+```bash
 bun run dev
-````
+```
+
 The frontend will be available at http://localhost:3000 and the API at http://localhost:3001.
 
 **TESTING THE OWNERSHIP BOUNDARY**
