@@ -6,24 +6,26 @@ import { createEnquirySchema } from "schemas";
 export default function EnquiryForm({ propertyId }: { propertyId: string }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
     setErrorMsg("");
 
-    const formData = new FormData(e.currentTarget);
     const rawData = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message"),
+      name: name,
+      email: email,
+      message: message,
     };
 
     // 1. Enforce the contract on the client!
     const parsed = createEnquirySchema.safeParse(rawData);
     if (!parsed.success) {
       setStatus("error");
-      setErrorMsg(parsed.error.errors[0].message);
+      setErrorMsg(parsed.error.errors[0]?.message || "Invalid input");
       return;
     }
 
@@ -60,6 +62,8 @@ export default function EnquiryForm({ propertyId }: { propertyId: string }) {
           placeholder="Your Name"
           className="border p-2 rounded"
           required
+          value={name}
+          onChange={(e) => setName((e.currentTarget as unknown as { value: string }).value)}
         />
         <input
           name="email"
@@ -67,12 +71,16 @@ export default function EnquiryForm({ propertyId }: { propertyId: string }) {
           placeholder="Your Email"
           className="border p-2 rounded"
           required
+          value={email}
+          onChange={(e) => setEmail((e.currentTarget as unknown as { value: string }).value)}
         />
         <textarea
           name="message"
           placeholder="I'm interested in..."
           className="border p-2 rounded"
           required
+          value={message}
+          onChange={(e) => setMessage((e.currentTarget as unknown as { value: string }).value)}
         ></textarea>
 
         {status === "error" && <p className="text-red-500 text-sm">{errorMsg}</p>}

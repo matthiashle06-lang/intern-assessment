@@ -1,9 +1,9 @@
 import { propertyListSchema } from "schemas";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
-  const res = await fetch("http://localhost:3001/properties", {
-    cache: "no-store", // Ensures fresh data on every load
-  });
+  const res = await fetch("http://localhost:3001/properties");
 
   if (!res.ok) {
     return <main className="p-8 text-red-500">Error: Failed to load properties.</main>;

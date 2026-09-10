@@ -1,6 +1,8 @@
 import { propertySchema } from "schemas";
 import EnquiryForm from "./enquiryForm";
 
+export const dynamic = "force-dynamic";
+
 // 1. Update the type to expect a Promise
 export default async function PropertyDetail({ params }: { params: Promise<{ id: string }> }) {
   // 2. Await the params to unwrap the ID
@@ -8,9 +10,7 @@ export default async function PropertyDetail({ params }: { params: Promise<{ id:
   const propertyId = resolvedParams.id;
 
   // 3. Fetch the single property from Elysia using the unwrapped ID
-  const res = await fetch(`http://localhost:3001/properties/${propertyId}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(`http://localhost:3001/properties/${propertyId}`);
 
   if (res.status === 404) {
     return <main className="p-8 text-center text-xl">404 - Property Not Found</main>;

@@ -8,21 +8,19 @@ export default function LoginPage() {
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setErrorMsg("");
 
-    const formData = new FormData(e.currentTarget);
-    const rawData = {
-      email: formData.get("email"),
-      password: formData.get("password"),
-    };
+    const rawData = { email, password };
 
     const parsed = loginSchema.safeParse(rawData);
     if (!parsed.success) {
-      setErrorMsg(parsed.error.errors[0].message);
+      setErrorMsg(parsed.error.errors[0]?.message || "Invalid input");
       setIsLoading(false);
       return;
     }
