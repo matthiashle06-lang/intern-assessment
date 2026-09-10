@@ -37,7 +37,7 @@ export default function EnquiryForm({ propertyId }: { propertyId: string }) {
 
       if (!res.ok) throw new Error("API rejected the enquiry");
       setStatus("success");
-    } catch (err) {
+    } catch {
       setStatus("error");
       setErrorMsg("Failed to send enquiry. Please try again.");
     }
