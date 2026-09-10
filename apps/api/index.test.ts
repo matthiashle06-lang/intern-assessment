@@ -18,8 +18,8 @@ describe("Property API Integration Tests", () => {
 
     // 3. Push the schema to the empty test database
     console.log("📦 Pushing schema to Test DB...");
-    await $`cd apps/api && bunx drizzle-kit push`;
-
+    await $`bunx drizzle-kit push --config=apps/api/drizzle.config.ts`;
+    
     // 4. Dynamically import the app ONLY AFTER the test DB is ready
     const api = await import("./index");
     app = api.app;
