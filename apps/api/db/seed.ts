@@ -6,13 +6,13 @@ import { auth } from "../auth";
 async function main() {
   console.log("Seeding database...");
 
-  // 1. Create Owners using Better Auth (This handles hashing and tables automatically!)
+  // Create Owners using Better Auth (This handles hashing and tables automatically!)
   const amirData = await auth.api.signUpEmail({
     headers: new Headers(),
     body: {
       name: "Amir",
       email: "amir@test.com",
-      password: "password123", // Now they have a real password!
+      password: "password123",
     },
   });
 
@@ -27,14 +27,14 @@ async function main() {
 
   console.log("Created owners Amir and Bea with passwords");
 
-  // 2. Create Properties using the new User IDs
+  // Create Properties using the new User IDs
   await db.insert(properties).values([
     {
       name: "Amir's Published Villa",
       description: "A beautiful place anyone can see.",
       price: 1500,
       published: true,
-      ownerId: amirData.user.id, // Better Auth returns the user object here
+      ownerId: amirData.user.id,
     },
     {
       name: "Amir's Secret Base",

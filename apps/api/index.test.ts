@@ -5,7 +5,7 @@ import { $ } from "bun";
 describe("Property API Integration Tests", () => {
   let container: StartedPostgreSqlContainer;
   let dbUrl: string;
-  let app: any; // We will store the Elysia app here
+  let app: any;
 
   beforeAll(async () => {
     // 1. Spin up the throwaway Postgres container

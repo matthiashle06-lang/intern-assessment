@@ -7,6 +7,7 @@ import { eq, and } from "drizzle-orm";
 import type { Context } from "elysia";
 import { cors } from "@elysiajs/cors";
 
+// Creates the Elysia server instance.
 export const app = new Elysia()
   // Backend entry point for the property platform.
   .use(
@@ -20,7 +21,6 @@ export const app = new Elysia()
   .mount(auth.handler)
   .derive(async ({ request }) => {
     const session = await auth.api.getSession({ headers: request.headers });
-    // FIX 1: Map to a simple, strict object so TypeScript doesn't choke on the Drizzle types.
     return {
       user: session?.user ? { id: session.user.id } : null,
     };

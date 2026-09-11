@@ -43,12 +43,12 @@ export const account = pgTable("account", {
   accessToken: text("access_token"),
   refreshToken: text("refresh_token"),
   idToken: text("id_token"),
-  accessTokenExpiresAt: timestamp("access_token_expires_at"), // Added
-  refreshTokenExpiresAt: timestamp("refresh_token_expires_at"), // Added
-  scope: text("scope"), // Added
+  accessTokenExpiresAt: timestamp("access_token_expires_at"),
+  refreshTokenExpiresAt: timestamp("refresh_token_expires_at"),
+  scope: text("scope"),
   password: text("password"),
-  createdAt: timestamp("created_at").notNull(), // Added
-  updatedAt: timestamp("updated_at").notNull(), // Added
+  createdAt: timestamp("created_at").notNull(),
+  updatedAt: timestamp("updated_at").notNull(),
 });
 
 export const session = pgTable("session", {
