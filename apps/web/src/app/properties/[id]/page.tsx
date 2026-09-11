@@ -1,6 +1,7 @@
 import { propertySchema } from "schemas";
 import EnquiryForm from "./enquiryForm";
 
+// Property detail page with the enquiry form attached.
 export const dynamic = "force-dynamic";
 
 // 1. Update the type to expect a Promise

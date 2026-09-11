@@ -1,5 +1,6 @@
 "use client";
 
+// Form for submitting an enquiry against a specific property.
 import { useState } from "react";
 import { createEnquirySchema } from "schemas";
 

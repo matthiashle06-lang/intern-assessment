@@ -1,5 +1,6 @@
 import { propertyListSchema } from "schemas";
 
+// Public landing page: shows published properties only.
 export const dynamic = "force-dynamic";
 
 export default async function Home() {

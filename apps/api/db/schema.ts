@@ -1,6 +1,6 @@
 import { pgTable, text, timestamp, integer, boolean, uuid } from "drizzle-orm/pg-core";
 
-// This file defines the database schema for the application using Drizzle ORM. It includes two tables: "properties" and "enquiries". The "properties" table stores information about properties, while the "enquiries" table stores inquiries related to those properties. The schema also establishes a foreign key relationship between the two tables, ensuring that each enquiry is associated with a specific property.
+// Database schema for properties, enquiries, and Better Auth tables.
 export const properties = pgTable("properties", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("title").notNull(),

@@ -1,5 +1,6 @@
 "use client";
 
+// Owner dashboard: shows their properties and enquiries after login.
 import { useEffect, useState } from "react";
 import { enquiryListSchema, propertyListSchema } from "schemas";
 import { useRouter } from "next/navigation";

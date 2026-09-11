@@ -2,6 +2,7 @@ import { db } from "./client";
 import { properties } from "./schema";
 import { auth } from "../auth";
 
+// Seeds demo owners and sample properties for local testing.
 async function main() {
   console.log("Seeding database...");
 

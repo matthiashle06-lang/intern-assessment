@@ -1,5 +1,6 @@
 "use client";
 
+// Owner sign-in page for Better Auth email/password login.
 import { useState } from "react";
 import { loginSchema } from "schemas";
 import { useRouter } from "next/navigation";

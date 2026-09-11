@@ -1,12 +1,14 @@
 import { Elysia, t } from "elysia";
 import { db } from "./db/client";
 import { enquiries, properties } from "./db/schema";
+// Main API: handles property access, owner checks, and enquiry submission.
 import { auth } from "./auth";
 import { eq, and } from "drizzle-orm";
 import type { Context } from "elysia";
 import { cors } from "@elysiajs/cors";
 
 export const app = new Elysia()
+  // Backend entry point for the property platform.
   .use(
     cors({
       origin: "http://localhost:3000",
